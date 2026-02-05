@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Builder Pool - Swimmeret</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main>
+    <div class="header">
+      <div class="brand">
+        <div class="brand-mark"></div>
+        <div>
+          <h1>Swimmeret Builder Pool</h1>
+          <div class="subhead">Verified demand for a stable lane.</div>
+        </div>
+      </div>
+      <a class="button" href="/">Join the pool</a>
+    </div>
+
+    <div class="shell">
+      <div class="panel">
+        <h2 id="pool-name">Heavy Agent Builders - Stable Lane</h2>
+        <div class="progress-wrap">
+          <div class="subhead" id="pool-progress">0 / 50 seats pledged</div>
+          <div class="progress-bar" aria-hidden="true">
+            <span id="pool-progress-bar" style="width: 0%"></span>
+          </div>
+          <div class="ladder" id="threshold-ladder"></div>
+        </div>
+        <h3>Requested terms</h3>
+        <ul class="list" id="terms-list"></ul>
+      </div>
+
+      <aside>
+        <div class="sidebar-card">
+          <h3>Pool stats</h3>
+          <div class="subhead" id="pool-stats"></div>
+        </div>
+        <div class="sidebar-card">
+          <h3>Urgency mix</h3>
+          <div class="subhead" id="urgency-stats"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+  <script src="/pool.js"></script>
+</body>
+</html>

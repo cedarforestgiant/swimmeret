@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Swimmeret - Stability Help</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main>
+    <div class="header">
+      <div class="brand">
+        <div class="brand-mark"></div>
+        <div>
+          <h1>Swimmeret Stability Help</h1>
+          <div class="subhead">Throttle shock to builder pool in under 60 seconds.</div>
+        </div>
+      </div>
+      <div class="badge" id="header-badge">Awaiting intake</div>
+    </div>
+
+    <div class="shell">
+      <div class="panel">
+        <div class="stepper">
+          <div class="step active" data-step="intake">Intake</div>
+          <div class="step" data-step="plan">Plan</div>
+          <div class="step" data-step="pool">Pool</div>
+        </div>
+
+        <section class="section active" id="section-intake">
+          <h2>Stability Help Intake</h2>
+          <p class="subhead">Tell us what happened so we can verify your build profile and draft guardrails.</p>
+          <form id="intake-form">
+            <div class="grid-2">
+              <div class="field">
+                <label for="incidentType">Incident type</label>
+                <select id="incidentType" required>
+                  <option value="throttled">Throttled</option>
+                  <option value="warned">Warned</option>
+                  <option value="canceled">Canceled</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="provider">Provider</label>
+                <select id="provider">
+                  <option value="Claude">Claude</option>
+                </select>
+              </div>
+            </div>
+            <div class="grid-2">
+              <div class="field">
+                <label for="seatsBand">Paid seats</label>
+                <select id="seatsBand">
+                  <option value="1">1</option>
+                  <option value="2-3">2-3</option>
+                  <option value="4-12">4-12</option>
+                  <option value="13+">13+</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="agentsBand">Agents running</label>
+                <select id="agentsBand">
+                  <option value="1-10">1-10</option>
+                  <option value="10-50">10-50</option>
+                  <option value="50-200">50-200</option>
+                  <option value="200+">200+</option>
+                </select>
+              </div>
+            </div>
+            <div class="grid-2">
+              <div class="field">
+                <label for="urgency">Urgency</label>
+                <select id="urgency">
+                  <option value="today">Today</option>
+                  <option value="this week">This week</option>
+                  <option value="this month">This month</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="consent">Telemetry consent</label>
+                <select id="consent">
+                  <option value="true" selected>Use my Swimmeret usage stats (anonymized)</option>
+                  <option value="false">No telemetry</option>
+                </select>
+              </div>
+            </div>
+            <button class="button" type="submit">Generate Stability Plan</button>
+          </form>
+        </section>
+
+        <section class="section" id="section-plan">
+          <h2>Your Stability Plan</h2>
+          <div id="verification-block" class="notice"></div>
+          <h3>What likely triggered this</h3>
+          <ul class="list">
+            <li>Sudden spikes in concurrency triggered automated risk flags.</li>
+            <li>Retry storms after 429s made traffic look adversarial.</li>
+            <li>Long tool loops without cooldowns raised abuse heuristics.</li>
+            <li>Sustained peak throughput without pacing windows.</li>
+          </ul>
+          <h3>Good Citizen Guardrails</h3>
+          <div class="toggle">
+            <span>Cap concurrency during peak hours</span>
+            <input type="checkbox" id="guard-cap" checked />
+          </div>
+          <div class="toggle">
+            <span>Jitter + backoff on retries</span>
+            <input type="checkbox" id="guard-backoff" checked />
+          </div>
+          <div class="toggle">
+            <span>Tool loop limiter (stop after N cycles)</span>
+            <input type="checkbox" id="guard-loop" checked />
+          </div>
+          <div class="toggle">
+            <span>Cache / dedupe repeated requests</span>
+            <input type="checkbox" id="guard-cache" />
+          </div>
+          <div class="grid-2">
+            <button class="button secondary" id="apply-guardrails">Apply Guardrails</button>
+            <button class="button" id="join-pool">Join Builder Pool</button>
+          </div>
+        </section>
+
+        <section class="section" id="section-pool">
+          <h2>Join the Builder Pool</h2>
+          <div class="progress-wrap">
+            <div><strong id="pool-name">Heavy Agent Builders - Stable Lane</strong></div>
+            <div class="subhead" id="pool-progress">0 / 50 seats pledged</div>
+            <div class="progress-bar" aria-hidden="true">
+              <span id="pool-progress-bar" style="width: 0%"></span>
+            </div>
+            <div class="ladder" id="threshold-ladder"></div>
+          </div>
+          <h3>Terms to unlock</h3>
+          <ul class="list" id="terms-list"></ul>
+          <h3>Pledge</h3>
+          <form id="pledge-form">
+            <div class="grid-2">
+              <div class="field">
+                <label for="pledgeSeats">Seats intended</label>
+                <input type="number" id="pledgeSeats" min="1" value="4" />
+              </div>
+              <div class="field">
+                <label for="wtpBand">Willingness to pay</label>
+                <select id="wtpBand">
+                  <option value="low">$200-$400 / seat</option>
+                  <option value="mid" selected>$400-$800 / seat</option>
+                  <option value="high">$800+ / seat</option>
+                </select>
+              </div>
+            </div>
+            <div class="grid-2">
+              <div class="field">
+                <label for="contact">Email or handle</label>
+                <input type="email" id="contact" placeholder="you@company.com" />
+              </div>
+              <div class="field">
+                <label for="referral">Referral code (optional)</label>
+                <input type="text" id="referral" placeholder="OC-XXXX" />
+              </div>
+            </div>
+            <div class="field">
+              <label>
+                <input type="checkbox" id="intent" required />
+                I intend to purchase if terms are met.
+              </label>
+            </div>
+            <button class="button" type="submit">Submit Pledge</button>
+          </form>
+          <div class="notice hidden" id="pledge-confirm"></div>
+          <div class="field">
+            <label>Share link</label>
+            <div class="copy-row">
+              <input type="text" id="share-link" readonly />
+              <button class="button secondary" id="copy-link" type="button">Copy</button>
+            </div>
+            <div class="code" id="ref-code"></div>
+          </div>
+        </section>
+      </div>
+
+      <aside>
+        <div class="sidebar-card">
+          <h3>Why this lane exists</h3>
+          <p class="subhead">Serious builders get flagged by consumer risk systems. This flow verifies demand and applies guardrails so providers can say yes safely.</p>
+        </div>
+        <div class="sidebar-card">
+          <h3>Telemetry scope</h3>
+          <p class="subhead">We only use anonymized aggregates to verify heavy usage. Public pages show totals, never PII.</p>
+          <div class="code">Consent required: toggle in intake.</div>
+        </div>
+        <div class="sidebar-card">
+          <h3>Lab view (demo)</h3>
+          <p class="subhead">View the demand book once you join the pool.</p>
+          <a class="button secondary" id="lab-link" href="#" target="_blank">Open Lab View</a>
+        </div>
+      </aside>
+    </div>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Swimmeret Lab View</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main>
+    <div class="header">
+      <div class="brand">
+        <div class="brand-mark"></div>
+        <div>
+          <h1>Demand Book - Lab View</h1>
+          <div class="subhead">Aggregated, anonymized intent for provider BD.</div>
+        </div>
+      </div>
+      <a class="button" href="/">Back to flow</a>
+    </div>
+
+    <div class="shell">
+      <div class="panel">
+        <h2 id="lab-pool-name">Pool</h2>
+        <div class="progress-wrap">
+          <div class="subhead" id="lab-seat-total">0 seats pledged</div>
+          <div class="subhead" id="lab-implied">Implied monthly: $0</div>
+        </div>
+
+        <h3>Workload profile</h3>
+        <div class="sidebar-card" id="lab-workload"></div>
+
+        <h3>Requested terms</h3>
+        <ul class="list" id="lab-terms"></ul>
+
+        <h3>Single counterparty path</h3>
+        <div class="notice" id="lab-counterparty"></div>
+      </div>
+
+      <aside>
+        <div class="sidebar-card">
+          <h3>Seat distribution</h3>
+          <div class="subhead" id="lab-seat-hist"></div>
+        </div>
+        <div class="sidebar-card">
+          <h3>Urgency distribution</h3>
+          <div class="subhead" id="lab-urgency"></div>
+        </div>
+        <div class="sidebar-card">
+          <h3>Guardrail adoption</h3>
+          <div class="subhead" id="lab-guardrails"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+  <script src="/lab.js"></script>
+</body>
+</html>
