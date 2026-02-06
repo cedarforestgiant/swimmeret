@@ -1,0 +1,52 @@
+[project]
+name = "swimmeret"
+version = "0.1.0"
+description = "Collective LLM token purchasing for Clawdbot users"
+requires-python = ">=3.11"
+dependencies = [
+    "typer[all]>=0.9.0",
+    "rich>=13.0.0",
+    "httpx>=0.25.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "pytest-mock>=3.12",
+    "black>=23",
+    "isort>=5.12",
+    "ruff>=0.1",
+    "mypy>=1.7",
+]
+
+[project.scripts]
+swimmeret = "swimmeret:app"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+addopts = "--cov=scripts --cov-report=term-missing"
+
+[tool.coverage.run]
+omit = ["*/tests/*", "*/venv/*", "*/.venv/*"]
+
+[tool.coverage.report]
+fail_under = 85
+
+[tool.black]
+line-length = 100
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "W", "I", "N", "UP", "B", "A", "C4", "DTZ", "T10", "PIE", "PT", "RET", "SIM"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
